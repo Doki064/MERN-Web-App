@@ -14,7 +14,8 @@ deploy:
   - provider: heroku
     api_key:
       secure: $HEROKU_API_KEY
-    app: t093iu-web-app-server
+    app: 
+      main: t093iu-web-app-server
   - provider: pages
     skip_cleanup: true
     github_token: $GITHUB_TOKEN
