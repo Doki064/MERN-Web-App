@@ -1,0 +1,16 @@
+{
+  "name": "MERN-Web-App",
+  "version": "0.1.0",
+  "license": "MIT",
+  "dependencies": {
+    "concurrently": "^6.0.0"
+  },
+  "scripts": {
+    "client": "cd client && npm start",
+    "server": "node server/server.js",
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "configClient": "cd client && npm install",
+    "configServer": "cd server && npm install",
+    "config": "npm install && npm run configClient && npm run configServer"
+  }
+}
