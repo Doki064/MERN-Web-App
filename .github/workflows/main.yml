@@ -1,0 +1,38 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+    - main
+    - gh-pages
+  pull_request:
+    branches:
+    - main
+
+jobs:
+    build:
+      runs-on: ubuntu-latest
+      steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+      - name: Heroku deploy
+        uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "it093iu-web-app-server" #Must be unique in Heroku
+          heroku_email: "minhdiep1280@gmail.com"
+          appdir: "server" # <- This will point to the api folder in your project
+          healthcheck: "https://it093iu-web-app-server.herokuapp.com/health"
+          delay: 5
+      - name: Check GitHub Pages status
+        uses: crazy-max/ghaction-github-status@v2
+        with:
+          pages_threshold: major_outage
+      - name: Deploy to GitHub Pages
+        if: success()
+        uses: crazy-max/ghaction-github-pages@v2
+        with:
+          target_branch: gh-pages
+          build_dir: public
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
