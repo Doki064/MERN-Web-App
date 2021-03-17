@@ -15,7 +15,6 @@ deploy:
     api_key:
       secure: $HEROKU_API_KEY
     app: t093iu-web-app-server
-    on: main
   - provider: pages
     skip_cleanup: true
     github_token: $GITHUB_TOKEN
