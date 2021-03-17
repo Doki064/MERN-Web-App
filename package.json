@@ -11,6 +11,7 @@
     "start": "concurrently \"npm run server\" \"npm run client\"",
     "configClient": "cd client && npm install",
     "configServer": "cd server && npm install",
-    "config": "npm install && npm run configClient && npm run configServer"
+    "config": "npm install && npm run configClient && npm run configServer",
+	"heroku-postbuild": "npm install && npm run build"
   }
 }
