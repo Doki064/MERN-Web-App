@@ -2,6 +2,7 @@
   "name": "MERN-Web-App",
   "version": "0.1.0",
   "license": "MIT",
+  "homepage": "https://doki064.github.io/MERN-Web-App/",
   "dependencies": {
     "body-parser": "^1.19.0",
     "concurrently": "^6.0.0",
