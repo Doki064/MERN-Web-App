@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "license": "MIT",
   "dependencies": {
-    "concurrently": "^6.0.0",
     "body-parser": "^1.19.0",
+    "concurrently": "^6.0.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "gh-pages": "^3.1.0",
     "mongoose": "^5.12.0"
   },
   "scripts": {
@@ -16,6 +17,8 @@
     "configClient": "cd client && npm install",
     "config": "npm install && npm run configClient",
     "buildClient": "cd client && npm run build",
+    "predeploy": "cd client && npm install && npm run build",
+    "deploy": "cd client && gh-pages -d build",
     "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
   },
   "engines": {
