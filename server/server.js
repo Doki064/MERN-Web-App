@@ -1,3 +1,4 @@
+require("dotenv").config({ path: require("path").resolve(__dirname, "../.env") });
 const express = require("express");
 const cors = require("cors");
 
@@ -8,17 +9,12 @@ app.use(express.json());
 app.use(cors());
 app.listen(port, () => console.log(`Listening on port ${port}...`));
 
+require("./database");
+
 app.get("/", ((req, res) => {
     res.send("<h1>Server is running</h1>");
 }))
 
-app.post("/api/users", async (req, res) => {
-    try {
-        console.log(req.body);
-        res.status(201).send();
-    } catch (err) {
-        res.status(500).send();
-    }
-})
-
-
+// API
+const users = require("./routes/users");
+app.use("/api", users);

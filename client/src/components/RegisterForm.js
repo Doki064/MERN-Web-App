@@ -4,8 +4,6 @@ import { Form, FormGroup, Button } from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 
-import { IS_LOGGED_IN } from "../LocalStorageKey";
-
 import "./RegisterForm.css";
 
 function RegisterForm() {
@@ -13,11 +11,18 @@ function RegisterForm() {
     const password = useRef({});
     password.current = watch("password", "");
     const onSubmit = async data => {
-        await axios.post("http://localhost:5000/api/users", data)
+        await axios.post("http://localhost:5000/api/users/register", data)
+            .then(res => {
+                alert(res.data.message);
+                if (res.data.registered) {
+                    localStorage.setItem("isRegistered", res.data.registered)
+                }
+            })
             .catch(err => console.log(err))
     };
 
     return (
+        localStorage.getItem("isRegistered") ? <Redirect to={"/"} /> :
         <div className={"registerForm"}>
             <Form onSubmit={event => event.preventDefault()}>
                 <FormGroup controlId={"registerEmail"}>
