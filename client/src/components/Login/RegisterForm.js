@@ -21,7 +21,7 @@ function RegisterForm() {
             .catch(err => console.log(err))
     };
 
-    if (localStorage.getItem("user")) {
+    if (sessionStorage.getItem("session")) {
         return (
             <Redirect to={"/dashboard"} />
         )

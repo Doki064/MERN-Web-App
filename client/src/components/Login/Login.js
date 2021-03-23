@@ -12,15 +12,19 @@ function LoginForm() {
         await axios.post("http://localhost:5000/api/users/login", data)
             .then(res => {
                 alert(res.data.message);
-                if (res.data.registered) {
-                    localStorage.setItem("isRegistered", res.data.registered)
+                if (res.data.session) {
+                    sessionStorage.setItem("session", res.data.session)
                 }
             })
             .catch(err => console.log(err))
     };
 
+    if (sessionStorage.getItem("session")) {
+        return (
+            <Redirect to={"/dashboard"} />
+        )
+    }
     return (
-        localStorage.getItem("isRegistered") ? <Redirect to={"/dashboard"} /> :
             <div className={"loginForm"}>
                 <Form onSubmit={event => event.preventDefault()}>
                     <FormGroup controlId={"loginUsername"}>

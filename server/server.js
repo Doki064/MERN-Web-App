@@ -17,4 +17,4 @@ app.get("/", ((req, res) => {
 
 // API
 const users = require("./routes/users");
-app.use("/api", users);
+app.use("/api/users", users);

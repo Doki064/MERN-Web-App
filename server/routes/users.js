@@ -1,18 +1,13 @@
 const express = require("express");
 const argon2 = require("argon2");
 const crypto = require("crypto");
+const jwt = require("jsonwebtoken");
 
 const User = require("../models/user");
 
 const router = express.Router();
 
-router.route("/users")
-    .get(async (req, res) => {
-        await User.find(req.body, (err, users) => {
-            // err ? console.log(err) : res.send(users);
-        });
-    })
-    .post(async (req, res) => {
+router.post("/register", async (req, res) => {
     try {
         if (await User.exists({ email: req.body.email })) {
             res.send({ message: "This email has already been registered" })
@@ -26,13 +21,13 @@ router.route("/users")
             const newUser = new User({
                 email: req.body.email,
                 username: req.body.username,
-                password: hash_pw,
+                hash_pw: hash_pw,
                 salt: salt
             });
             await newUser.save()
                 .then(() => res.send({
                     registered: true,
-                    message: "Create account successfully"
+                    message: "Created account successfully"
                 }))
                 .catch(err => res.status(400).send({
                     error: err,
@@ -41,6 +36,41 @@ router.route("/users")
         }
     } catch (err) {
         res.status(500).send();
+        console.log(err);
+    }
+})
+
+router.post("/login", async (req, res) => {
+    try {
+        await User.findOne({ username: req.body.username }, async (err, user) => {
+            if (err) {
+                console.log(err);
+            }
+            if (user) {
+                if (await argon2.verify(
+                    crypto.createHmac("sha256", user.salt).update(req.body.password).digest("base64"),
+                    user.hash_pw
+                )) {
+                    const token = jwt.sign({
+                            id: user._id,
+                        }, process.env.JWT_SECRET, { expiresIn: "1h" })
+                    res.send({
+                        session: {
+                            id: user._id,
+                            token: token
+                        },
+                        message: "Logged in successfully"
+                    })
+                } else {
+                    res.send({ message: "Password is incorrect" })
+                }
+            } else {
+                res.send({ message: "This user does not exist" })
+            }
+        })
+    } catch (err) {
+        res.status(500).send();
+        console.log(err);
     }
 })
 

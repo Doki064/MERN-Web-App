@@ -1,10 +1,5 @@
-.registerForm {
-    background: #f2f2f2;
-    max-width: 500px;
-    min-width: 400px;
-    margin: 0 auto;
-}
-
+.registerForm,
+.loginForm,
 .form {
     background: #f2f2f2;
     max-width: 500px;
