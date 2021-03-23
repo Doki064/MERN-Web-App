@@ -2,7 +2,8 @@ import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import HomePage from "./components/HomePage";
-import Signup from "./components/RegisterForm";
+import RegisterForm from "./components/Login/RegisterForm";
+import LoginForm from "./components/Login/Login";
 
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -27,11 +28,14 @@ function App() {
         </Navbar>
 
         <Switch>
-          <Route exact path="/">
+          <Route exact path={"/"}>
             <HomePage />
           </Route>
-          <Route path="/signup">
-            <Signup />
+          <Route path={"/login"}>
+            <LoginForm />
+          </Route>
+          <Route path={"/register"}>
+            <RegisterForm />
           </Route>
         </Switch>
       </BrowserRouter>

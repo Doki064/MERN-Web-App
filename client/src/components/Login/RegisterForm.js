@@ -4,7 +4,7 @@ import { Form, FormGroup, Button } from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 
-import "./RegisterForm.css";
+import "./Form.css";
 
 function RegisterForm() {
     const { register, errors, handleSubmit, watch } = useForm({});
@@ -21,8 +21,16 @@ function RegisterForm() {
             .catch(err => console.log(err))
     };
 
+    if (localStorage.getItem("user")) {
+        return (
+            <Redirect to={"/dashboard"} />
+        )
+    } else if (localStorage.getItem("isRegistered")) {
+        return (
+            <Redirect to={"/login"} />
+        )
+    }
     return (
-        localStorage.getItem("isRegistered") ? <Redirect to={"/"} /> :
         <div className={"registerForm"}>
             <Form onSubmit={event => event.preventDefault()}>
                 <FormGroup controlId={"registerEmail"}>
@@ -72,7 +80,7 @@ function RegisterForm() {
                     />
                     {errors.password_repeat && <p>{errors.password_repeat.message}</p>}
                 </FormGroup>
-                <Button type={"submit"} onClick={handleSubmit(onSubmit)}>Submit</Button>
+                <Button type={"submit"} onClick={handleSubmit(onSubmit)}>Register</Button>
             </Form>
             <div className={"login-redirect"}>
                 Already have an account? <Link to={"/login"}>Login</Link>
