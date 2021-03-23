@@ -16,7 +16,6 @@
     "configClient": "cd client && npm install",
     "config": "npm install && npm run configClient",
     "buildClient": "cd client && npm run build",
-    "deploy": "cd client && npm run deploy",
     "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
   },
   "engines": {
