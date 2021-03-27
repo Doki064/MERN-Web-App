@@ -13,7 +13,7 @@ function App() {
   if (sessionStorage.getItem("session")) {
     return (
         <div className="App">
-          <HashRouter basename={"/"}>
+          <HashRouter basename={process.env.PUBLIC_URL}>
             <Navbar bg="light" expand="lg">
               <Navbar.Brand href="/">React-Bootstrap</Navbar.Brand>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
