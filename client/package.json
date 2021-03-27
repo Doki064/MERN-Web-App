@@ -1,7 +1,7 @@
 {
-  "name": "client",
+  "name": "data-visualization-app",
   "version": "0.1.0",
-  "homepage": "https://doki064.github.io/MERN-Web-App/",
+  "homepage": "https://doki064.github.io/MERN-Web-App",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.9",

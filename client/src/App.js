@@ -1,5 +1,5 @@
 import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, HashRouter, Route, Switch } from "react-router-dom";
 
 import HomePage from "./components/HomePage";
 import Dashboard from "./components/Dashboard";
@@ -13,7 +13,7 @@ function App() {
   if (sessionStorage.getItem("session")) {
     return (
         <div className="App">
-          <BrowserRouter>
+          <HashRouter basename={"/"}>
             <Navbar bg="light" expand="lg">
               <Navbar.Brand href="/">React-Bootstrap</Navbar.Brand>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -40,7 +40,7 @@ function App() {
                 <Dashboard />
               </Route>
             </Switch>
-          </BrowserRouter>
+          </HashRouter>
         </div>
     )
   }
