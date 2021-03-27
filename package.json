@@ -1,7 +1,6 @@
 {
   "name": "MERN-Web-App",
   "version": "0.1.0",
-  "homepage": ".",
   "license": "MIT",
   "dependencies": {
     "argon2": "^0.27.1",
