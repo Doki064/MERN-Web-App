@@ -13,9 +13,12 @@ script:
 deploy:
   - provider: heroku
     api_key:
-      secure: $HEROKU_API_KEY
-    app: 
-      main: t093iu-web-app-server
+      secure: Sri+FvuhZvSPuB+ARlF9FZQ4He+YDYc/Q8jOyoxJX6k7fl7D2e92qPfoYwhn5nDeC5EMrV7IyKtY3lGpaP+hBxVspXX8EF2KsOydTFtKtQlp2SRYoOOyZ3hPGJGpHJqKzlqknHUDovyLcWBwA/hz1rX3VfKjg7ISaibBnmDp1HArwFcR9bRJVQJTp+v/h8K14PZOPLVaf7/Hmbe62HqN0dfNeIAqHX+jYJ6RK5FImyGcgveIgwdojfkiRsqCHP89pgfSiZPFGCkctZFtn47VOLddO8GQWreJWMNURcegertX3XQUvxbePQTWHPgucvX7XuWvZ8RXy9OW9Mj66ROMs8vQJ50Dk+rwfXsCc5MOCHQvwZlisf7aXhEEDJoMl4wQHX3Ylr8cFtr3wEvTGtr536E/OI9pqKJK06XTQ827fd4cdgs+JPrENaA/zgMo694VBww+PnC/G6jFdOuoRBxh3nouMCvH/f+CJ1XQeSU79tU1tgKm2DK2BO/ekauQedmYwKe9RsuwP9+2RSyubKeQSvdlS8o/fhBYbTuQVWd3QBozZAzO0PFGinTMQEi1wkkmvuGr4ceV8/przBGLQ9gCummFC863+NTGZi3powxC/9gt9amEJp3wurUtQcRbEmFzxpt06Spj+aWmD/WbjPONOpUP8++dJXlZkNmHOUXEYZc=
+    app: it093iu-web-app-server
+    on:
+      repo: Doki064/MERN-Web-App
+      branch: main
+    skip_cleanup: 'true'
   - provider: pages
     skip_cleanup: true
     github_token: $GITHUB_TOKEN
