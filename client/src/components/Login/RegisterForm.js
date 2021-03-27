@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Form, FormGroup, Button } from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
@@ -8,14 +8,16 @@ import "./Form.css";
 
 function RegisterForm() {
     const { register, errors, handleSubmit, watch } = useForm({});
+    const [isRegistered, setIsRegistered] = useState(false);
     const password = useRef({});
     password.current = watch("password", "");
     const onSubmit = async data => {
+        console.log(data)
         await axios.post("http://localhost:5000/api/users/register", data)
             .then(res => {
                 alert(res.data.message);
                 if (res.data.registered) {
-                    localStorage.setItem("isRegistered", res.data.registered)
+                    setIsRegistered(res.data.registered)
                 }
             })
             .catch(err => console.log(err))
@@ -23,9 +25,9 @@ function RegisterForm() {
 
     if (sessionStorage.getItem("session")) {
         return (
-            <Redirect to={"/dashboard"} />
+            <Redirect to={"/dashboard/:id"} />
         )
-    } else if (localStorage.getItem("isRegistered")) {
+    } else if (isRegistered) {
         return (
             <Redirect to={"/login"} />
         )

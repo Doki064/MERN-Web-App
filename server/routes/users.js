@@ -42,21 +42,24 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
     try {
-        await User.findOne({ username: req.body.username }, async (err, user) => {
+        await User.findOne({ email: req.body.email }, async (err, user) => {
             if (err) {
                 console.log(err);
             }
             if (user) {
                 if (await argon2.verify(
-                    crypto.createHmac("sha256", user.salt).update(req.body.password).digest("base64"),
-                    user.hash_pw
+                    user.hash_pw,
+                    crypto.createHmac("sha256", user.salt).update(req.body.password).digest("base64")
+
                 )) {
                     const token = jwt.sign({
                             id: user._id,
+                            username: user.username
                         }, process.env.JWT_SECRET, { expiresIn: "1h" })
                     res.send({
                         session: {
                             id: user._id,
+                            username: user.username,
                             token: token
                         },
                         message: "Logged in successfully"
