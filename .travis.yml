@@ -26,4 +26,5 @@ deploy:
     site: $NETLIFY_SITE_ID
     auth:
       secure: BZH5evMwRUfOBcNegdzViDtpYJSG6eKeAs+BaerKNSgjaUl8rjXCTpEbsqe0J3mBNYdr6ZLBSiSTTJUjVZTk2uwW0dCBkqUTQHWdXKrnbRAOrYu7BDjE3Rb4s8lAfPyWf0iTG819TK+tAvAYBpe/YCli64yENpZiRWWhfnVBM6NSSSkA+83NF+mGU6RRKDsJW9ismuQizVYIcuEsMfFF74cq9pK03LPT11x58qeE9atiCh6OJLtgdzwYlpIQ+KA2rW3iRyoh3AQtJ1cwa3NpfAh0iTo7I+Bxrbh/I84JfkpwjzS4WIj+UciOH5Itrmslyn6FemFUrojhMba99JAitM8XyKuYEaE0T/IUpV+CrnbWmMZSa0tSMszcOD3rUk8ATUuocu77SQDscaLVYicT1OkpPOqXZYoLpRiqbjea4rrX2erKHaXuXv3TlaHP+V2ROJkH8DdYGg1Bd/vAd9xSgNAvpkeNwro/E1sZMYXBWWifIAuYKkZdFoNtOmiQ0glSeDR6xn6KzgcrQ8GigQpUEAq92mqjQgfnLC473cBNGGiHiaw4nVf8g7U5oN63GTGnsRamLNBciJARk58iWI57XtAjMjSAE6aitCjh7rn/5Ggs872KDYy4q3LSl/WiVUDDFMJBrtc1dWITn0rbGOEg8okyW4AhVtMEtxsA7+0BFvw=
+    dir: "client/build/"
     edge: true # opt in to dpl v2
