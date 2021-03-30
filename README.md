@@ -6,7 +6,6 @@
 [![Netlify Status][netlify-badge]][netlify]
 
 ## Client-side App
-### `npm run deploy`
 Open [https://it093iu-web-app.netlify.app/](https://it093iu-web-app.netlify.app/) to view it in the browser.
 
 [travis-badge]: https://travis-ci.com/Doki064/MERN-Web-App.svg?branch=main
